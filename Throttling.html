@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Throtting</title>
+  </head>
+  <style>
+    body {
+      height: 20vh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    button {
+      background: blue;
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: inset;
+    }
+    button:hover {
+      background: rgb(49, 49, 243);
+      border: none;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      cursor: pointer;
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      box-shadow: inset;
+    }
+  </style>
+  <body>
+    <button id="myThrotting">Throtting</button>
+  </body>
+</html>
+<script>
+    var myThrotting = document.getElementById("myThrotting");
+  const newThrotter = (fn, delay) => {
+      return function (...args) {
+        document.title="wait"+ delay/1000 +"seconds only"
+        myThrotting.disabled = true;
+      setTimeout(function () {
+        fn();
+      }, delay);
+    };
+  };
+  myThrotting.addEventListener(
+    "click",
+    newThrotter(() => {
+        document.title="Throtting"
+        myThrotting.disabled = false;
+      alert("Your throtter assignment Done!");
+    }, 5000)
+  );
+</script>
