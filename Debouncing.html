@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Debounce</title>
+  </head>
+  <body>
+    <input
+      onkeypress="MyDebounce()"
+      type="text"
+      placeholder="Enter Some text"
+    />
+  </body>
+</html>
+<script>
+ 
+  function getData(e) {
+    alert("Your debouncing is working")
+  }
+  function debounce(call, delay) {
+    let timer;
+    return function (...args) {
+        if(timer) clearTimeout(timer)
+    timer=  setTimeout(() => {
+        call();
+      }, delay);
+    };
+  }
+  const MyDebounce = debounce(getData, 2000);
+</script>
